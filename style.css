@@ -18,7 +18,7 @@ html {
 
 #score {
     background-color: rgb(216, 185, 5);
-    color: #888E5F;
+    color: rgb(101, 105, 71);
     padding: 11px;
     position: absolute;
     /* looking for a 1st parent that has relative position and depends only on it */
@@ -68,7 +68,7 @@ html {
     background-color: blueviolet;
     margin: 10px auto;
     text-align: center;
-    line-height: 45px;
+    line-height: 50px;
     box-shadow: 4px 4px 5px rgb(102, 34, 167);
     -moz-box-shadow: 4px 4px 5px rgb(102, 34, 167);
     -webkit-box-shadow: 4px 4px 5px rgb(102, 34, 167);
@@ -145,7 +145,7 @@ html {
 }
 
 #time {
-    width: 145px;
+    width: 155px;
     padding: 11px;
     background-color: chocolate;
     position: absolute;
