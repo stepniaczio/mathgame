@@ -10,7 +10,7 @@ document.getElementById('startreset').onclick = function() {
     if (playing) {
         location.reload();
     } else {
-        timeRemaning = 6;
+        timeRemaning = 60;
         playing = true;
         // set score to 0
         score = 0;
@@ -70,14 +70,45 @@ function generateQA() {
     changeText('question', numberOne + 'x' + numberTwo);
     correctAnswer = numberOne * numberTwo;
     let correctPosition = Math.floor(Math.random() * 4) + 1;
-    debugger;
+
     changeText('box' + correctPosition, correctAnswer);
     //fill other boxes with wrong anwsers
+    let answers = [correctAnswer];
     for (let i = 1; i < 5; i++) {
-        let wrongAnswer = Math.floor(Math.random() * 100) + 1;
         if (i !== correctPosition) {
+            let wrongAnswer;
+            do {
+                wrongAnswer = Math.floor(Math.random() * 100) + 1;
+                //looks for number that is the same as wrongNumber
+                //it returns -1 if there is none ↓
+            } while (answers.indexOf(wrongAnswer) > -1)
             changeText('box' + i, wrongAnswer);
+            answers.push(wrongAnswer);
         }
+    }
+}
 
+for (let i = 1; i < 5; i++) {
+    document.getElementById('box' + i).onclick = function() {
+        if (playing) {
+            if (this.innerHTML == correctAnswer) {
+                score++;
+                changeText('scorevalue', score);
+                hide('wrong');
+                show('correct'); //but for 1 sec
+                setTimeout(function() {
+                    hide('correct');
+                }, 1000);
+                generateQA();
+            } else {
+                score--;
+                changeText('scorevalue', score);
+                show('wrong');
+                hide('correct');
+                setTimeout(function() {
+                    hide('wrong');
+                }, 1000);
+            }
+        }
     }
 }
